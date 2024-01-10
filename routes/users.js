@@ -9,7 +9,7 @@ router.get('/register', (req, res, next) => {
 router.get('/authenticate', (req, res, next) => {
     res.send('AUTHENTICATE');
 });
-router.get('/profile', (req, res, next) => {
+router.get('/profile' , (req, res, next) => {
     res.send('Profile');
 });
 router.get('/validate', (req, res, next) => {
