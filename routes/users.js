@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/register', (req, res, next) => {
     res.send('REGISTER');
 });
-router.get('/authenicate', (req, res, next) => {
+router.get('/authenticate', (req, res, next) => {
     res.send('AUTHENTICATE');
 });
 router.get('/profile' , (req, res, next) => {
