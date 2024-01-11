@@ -9,7 +9,7 @@ const config=require('./config/database')
 mongoose.connect(config.database)
 
 mongoose.connection.on('connected',()=>{
-    console.log(`Connected to DB ${config.database}` )
+    console.log(`Conncted to DB ${config.database}` )
 })
 
 const port=3000;
