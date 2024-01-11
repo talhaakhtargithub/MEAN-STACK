@@ -11,6 +11,9 @@ mongoose.connect(config.database)
 mongoose.connection.on('connected',()=>{
     console.log(`Connected to DB ${config.database}` )
 })
+mongoose.connection.on('error',(err)=>{
+    console.log(`DB Error ${err}` )
+})
 
 const port=3000;
 
