@@ -12,15 +12,7 @@ mongoose.connection.on('connected',()=>{
     console.log(`Connected to DB ${config.database}` )
 })
 
-const port=3000;
 
-//App
-const app=express();
-
-const users=require("./routes/users")
-
-//CORS
-app.use(cors());
 
 
 
