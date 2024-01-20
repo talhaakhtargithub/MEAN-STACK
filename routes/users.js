@@ -27,4 +27,45 @@ router.post('/register',(req,res,next)=>{
 
 })
 
+
+
+router.post('/authenticate',(req,res,next)=>{
+    const username=req.body.username;
+    const password=req.body.password;
+
+
+    User.getUserByUsername(username,(err,user)=>{
+        if(err) throw err;
+        if(!user){
+            return res.json({success: false,msg:"User not found"})
+        }
+
+        User.comparePassword(password,user.password ,(err,isMatch)=>{
+            if(err) throw err;
+            if(isMatch){
+                const token=jwt.sign(user,config.secret ,{
+                    expireIn:604800
+                });
+
+                res.json({
+                    success:true,
+                    token:"JWT "+token,
+                    user:{
+                        id:user._id,
+                        name:user.username,
+                        email:user.email,
+
+                    },
+                    msg:'User verified'
+                })
+            }
+            else{
+                return res.json({success: false,msg:"wrong password"})
+  
+            }
+        })
+    })
+
+})
+
 module.exports = router;

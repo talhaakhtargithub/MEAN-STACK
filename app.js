@@ -6,6 +6,7 @@ const passport=require('passport');
 const mongoose=require('mongoose');
 const config=require('./config/database')
 const users=require("./routes/users")
+require('./config/passport')(passport)
 mongoose.connect(config.database)
 
 mongoose.connection.on('connected',()=>{
@@ -32,6 +33,11 @@ app.use(express.static(path.join(__dirname,'public')))
 //Body Part MiddleWare
 app.use(bodyParser.json());
 
+
+//Passport midddle ware
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/users',users)
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
-const UserSchema = mongoose.Schema({
+const UserSchema =new mongoose.Schema({
     name: {
         type: String
     },
@@ -16,7 +16,7 @@ const UserSchema = mongoose.Schema({
     }
 });
 
-const User = module.exports = mongoose.model('User', UserSchema);
+const User = module.exports = new mongoose.model('User', UserSchema);
 
 module.exports.getUserById = function (id, callback) {
     User.findById(id, callback);
@@ -45,3 +45,9 @@ module.exports.addUser = function (newUser, callback) {
         });
     });
 };
+
+
+
+module.exports.comparePassword=function (candidatePassword,hash,callback) {
+    bcrypt.compare()
+}
